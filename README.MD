@@ -1,2 +1,2 @@
 basic theme without "flashy" colors
-![theme preview](vereseg-basic.png)
+![theme preview](vere-basictheme.png)
