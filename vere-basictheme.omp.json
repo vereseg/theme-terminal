@@ -1,0 +1,125 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "white": "#ebebeb",
+    "darkGray": "#7e7e7e",
+    "red": "#ff634c",
+    "yellow": "#ffff5f",
+    "green": "#809e35",
+    "black": "#111111"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": false,
+      "segments": [
+        {
+          "type": "path",
+          "foreground": "p:white",
+          "style": "plain",
+          "properties": {
+            "style": "full"
+          },
+          "template": "{{.Path}}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "text",
+          "foreground": "p:darkGray",
+          "style": "plain",
+          "template": "\ueab5 "
+        },
+        {
+          "type": "executiontime",
+          "foreground": "p:white",
+          "style": "plain",
+          "properties": {
+            "style": "austin",
+            "threshold": 0
+          },
+          "template": "{{.FormattedMs}}"
+        },
+        {
+          "type": "text",
+          "foreground": "p:darkGray",
+          "style": "plain",
+          "template": " · "
+        },
+        {
+          "type": "shell",
+          "foreground": "p:white",
+          "style": "plain",
+          "template": "\uf489 {{.Name}}"
+        },
+        {
+          "type": "text",
+          "foreground": "p:darkGray",
+          "style": "plain",
+          "template": " · "
+        },
+        {
+          "type": "os",
+          "foreground": "p:white",
+          "style": "plain",
+          "properties": {
+            "windows": "\ue62a",
+            "macos": "\uf179",
+            "linux": "\ue712",
+            "ubuntu": "\uf31c"
+          },
+          "template": "{{.Icon}} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "status",
+          "foreground": "p:white",
+          "foreground_templates": ["{{if gt .Code 0}}#ff3030{{end}}"],
+          "style": "plain",
+          "properties": {
+            "always_enabled": true
+          },
+          "template": "\u2570\uf460"
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "git",
+          "foreground": "p:white",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}",
+            "{{ if gt .Ahead 0 }}green{{ end }}",
+            "{{ if gt .Behind 0 }}p:red{{ end }}"
+          ],
+          "style": "plain",
+          "properties": {
+            "branch_icon": "",
+            "branch_identical_icon": "",
+            "branch_gone_icon": "\udb85\udc24 ",
+            "commit_icon": "",
+            "fetch_status": true
+          },
+          "template": "<p:darkGray>\ueab5</> {{ .HEAD }} {{if .BranchStatus }}<p:white>{{ .BranchStatus }}</>{{ end }}{{ if .Working.Changed }} <p:red>{{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <p:green>{{ .Staging.String }}</>{{ end }} "
+        }
+      ]
+    }
+  ],
+  "console_title_template": "{{ .Shell }} | {{ .Folder }}",
+  "final_space": true,
+  "version": 3
+}
